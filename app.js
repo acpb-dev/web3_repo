@@ -4,6 +4,8 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 const session = require('express-session');
+require('dotenv').config();
+const { PRIVATE_SECRET } = process.env;
 
 let indexRouter = require('./routes/index');
 
@@ -19,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
-  secret: '',  // Replace with your own secret key
+  secret: PRIVATE_SECRET,  // Replace with your own secret key
   resave: false,
   saveUninitialized: true,
   cookie: {secure: false}  // Set to true if using https
