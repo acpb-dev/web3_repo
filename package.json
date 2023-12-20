@@ -20,6 +20,7 @@
     "morgan": "^1.10.0",
     "nft.storage": "^7.1.1",
     "pug": "^3.0.2",
-    "supervisor": "^0.12.0"
+    "supervisor": "^0.12.0",
+    "web3": "^4.2.2"
   }
 }

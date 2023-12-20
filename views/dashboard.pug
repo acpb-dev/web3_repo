@@ -1,0 +1,91 @@
+extends layout
+
+block content
+    .container-fluid.position-relative.d-flex.p-0
+        .sidebar.pe-4.pb-3
+            nav.navbar.bg-secondary.navbar-dark
+                a.navbar-brand.mx-4.mb-3(href="/dashboard")
+                    h3.text-primary
+                        i.fa.fa-user-edit.me-2
+                        | Exchange
+                .d-flex.align-items-center.ms-4.mb-4
+                    .ms-3
+                        h5.mb-2(style="color: rgb(200, 18, 18); text-transform: uppercase;")
+                            span.text-label Bregy
+                        div
+                            span.text-label(style="color: rgb(200, 18, 18);") USD:
+                            span.number(style="margin-left: 0.5rem;") #{fiat}
+                        div
+                            span.text-label(style="color: rgb(200, 18, 18);") BTC:
+                            span.number(style="margin-left: 0.5rem;") #{bitcoin}
+                        div
+                            span.text-label(style="color: rgb(200, 18, 18);") ETH:
+                            span.number(style="margin-left: 0.5rem;") #{ethereum}
+                .navbar-nav.w-100
+                    a.nav-item.nav-link(href="/profile")
+                        i.fa.fa-user.me-2
+                        | Profile
+                    a.nav-item.nav-link.active(href="/dashboard")
+                        i.fa.fa-tachometer-alt.me-2
+                        | Dashboard
+                    a.nav-item.nav-link(href="/purchase")
+                        i.fa.fa-money-bill.me-2
+                        | Purchase
+                    a.nav-item.nav-link(href="/buy")
+                        i.fa.fa-shop.me-2
+                        | Buy
+                    a.nav-item.nav-link(href="/sell")
+                        i.fa.fa-sellsy.me-2
+                        | Sell
+                    a.nav-item.nav-link(href="/transfer")
+                        i.fa.fa-store.me-2
+                        | Transfer
+        // Sidebar End
+        .content.d-flex.flex-column.pt-5
+            // Navbar Start
+                // Navbar Start
+            // Flash Messages Start
+            if error && error !== ''
+                .alert.alert-danger.rounded.mb-3(role='alert') #{error}
+            // Flash Messages End
+            nav.navbar.navbar-expand.bg-secondary.navbar-dark.sticky-top.px-4.py-0
+                a.navbar-brand.d-flex.d-lg-none.me-4(href="/dashboard")
+                    h2.text-primary.mb-0
+                        i.fa.fa-user-edit
+                .navbar-nav.align-items-center.ms-auto
+            .container-fluid.pt-4.px-4
+                .row
+                    .col-sm-6.col-xl-6
+                        .bg-secondary.text-center.rounded.p-4
+                            .d-flex.align-items-center.justify-content-between.mb-4
+                                form(action="/mfa" method="post")
+                                    .d-flex.align-items-center.justify-content-between.mb-4
+                                    button.btn.btn-primary.py-3.w-100.mb-4(type="submit") Sign In
+                    .col-sm-6.col-xl-6
+                        .bg-secondary.text-center.rounded.p-4
+                            .d-flex.align-items-center.justify-content-between.mb-4
+                                h4.mb-0 Ethereum
+                            canvas#ethereumChart
+
+                    .col-sm-12.col-xl-12.mt-4
+                        .bg-secondary.text-center.rounded.p-4
+                            .d-flex.align-items-center.justify-content-between.mb-4
+                                h6.mb-0 Recent Transactions
+                            .table-responsive
+                                table.table.text-start.align-middle.table-bordered.table-hover.mb-0
+                                    thead
+                                        tr.text-white
+                                            th(scope="col") Date
+                                            th(scope="col") Type
+                                            th(scope="col") From
+                                            th(scope="col") To
+                                            th(scope="col") Amount
+            .container-fluid.pt-4.px-4.mt-auto
+                .bg-secondary.rounded-top.p-4
+                    .row
+                        .col-12.col-sm-6.text-center.text-sm-start
+                            | &copy;
+                            a(href="/dashboard") Exchange
+                            | , All Right Reserved.
+                        .col-12.col-sm-6.text-center.text-sm-end
+
